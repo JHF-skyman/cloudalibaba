@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+
+  <Properties>
+    <Property name="LOG_PATH">D://log</Property>
+    <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %boldGreen(%logger{50}) - %msg%n</Property>
+  </Properties>
+
+  <Appenders>
+
+    <Console name="console" target="SYSTEM_OUT">
+      <PatternLayout pattern="${LOG_PATTERN}"/>
+    </Console>
+
+    <!--<File name="logfile" filename="${LOG_PATH}//log4j2.log">
+      <PatternLayout pattern="${LOG_PATTERN}"/>
+    </File>-->
+
+    <RollingFile name="logfile" filename="${LOG_PATH}//rolling.log"
+      filePattern="${LOG_PATH}/$${date:yyyy-MM-dd}/rolling-%d{MM-dd-HH-mm}-%i.log">
+      <PatternLayout pattern="${LOG_PATTERN}"/>
+      <Policies>
+        <OnStartupTriggeringPolicy/>
+        <SizeBasedTriggeringPolicy size="5KB"/>
+        <TimeBasedTriggeringPolicy/>
+      </Policies>
+
+      <DefaultRolloverStrategy max="10"/>
+    </RollingFile>
+
+    <!--AsyncAppender全局配置，不如AsyncLogger性能好-->
+    <!--<Async name="myAsync">
+      <AppenderRef ref="console"/>
+    </Async>-->
+
+
+  </Appenders>
+
+  <Loggers>
+
+    <!--  自定义Logger
+          includeLocation="false"去除日志信息的行号
+          additivity="false"表示不继承RootLogger
+    -->
+    <!--<AsyncLogger name="com.skyman.controller" level="INFO" includeLocation="false" additivity="false">
+      <AppenderRef ref="console"/>
+
+    </AsyncLogger>-->
+
+    <!--<Root level="INFO">
+      <AppenderRef ref="console"/>
+      &lt;!&ndash;<AppenderRef ref="logfile"/>&ndash;&gt;
+      &lt;!&ndash;<AppenderRef ref="myAsync"/>&ndash;&gt;
+    </Root>-->
+  </Loggers>
+</Configuration>

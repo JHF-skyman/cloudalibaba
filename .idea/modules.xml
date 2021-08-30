@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cloudalibaba.iml" filepath="$PROJECT_DIR$/cloudalibaba.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service_gateway/service_gateway.iml" filepath="$PROJECT_DIR$/service_gateway/service_gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service_order/service_order.iml" filepath="$PROJECT_DIR$/service_order/service_order.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service_stock/service_stock.iml" filepath="$PROJECT_DIR$/service_stock/service_stock.iml" />
+    </modules>
+  </component>
+</project>

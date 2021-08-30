@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skyman.order.mapper.TagManagementMapper">
+  <resultMap id="TagManagementMap" type="com.skyman.order.entity.dto.TagManagementDto">
+    <result column="tagId" jdbcType="VARCHAR" property="tagId"/>
+    <result column="tagName" jdbcType="VARCHAR" property="tagName"/>
+    <result column="whichSystem" jdbcType="VARCHAR" property="whichSystem"/>
+    <result column="environment" jdbcType="VARCHAR" property="environment"/>
+    <result column="operator" jdbcType="VARCHAR" property="operator"/>
+    <result column="whichBranch" jdbcType="VARCHAR" property="whichBranch"/>
+    <result column="message" jdbcType="VARCHAR" property="message"/>
+    <result column="detail" jdbcType="VARCHAR" property="detail"/>
+
+  </resultMap>
+
+  <insert id="insertTag">
+    INSERT INTO tag_management(
+      tagId,tagName,whichSystem,environment,operator,whichBranch,message,detail
+    )
+    VALUES(#{tagId},#{tagName},#{whichSystem},#{environment},#{operator},#{whichBranch},#{message},#{detail})
+  </insert>
+
+  <select id="listSimpleTagInfo" resultType="com.skyman.order.entity.vo.TagManagementVo">
+    SELECT
+      id,tagName,whichBranch,operator,commitTime,whichSystem
+    FROM tag_management
+    <where>
+      <if test="tagName != null and tagName != ''">
+        AND tagName LIKE concat(concat('%',#{tagName,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="whichBranch != null and whichBranch != ''">
+        AND whichBranch LIKE concat(concat('%',#{whichBranch,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="whichSystem != null and whichSystem != ''">
+        AND whichSystem LIKE concat(concat('%',#{whichSystem,jdbcType=VARCHAR}),'%')
+      </if>
+    </where>
+    ORDER BY commitTime DESC
+  </select>
+
+  <select id="getDetailTagInfo" resultType="com.skyman.order.entity.dto.TagManagementDto">
+    SELECT
+      tagId,tagName,whichSystem,environment,operator,commitTime,whichBranch,message,detail
+    FROM tag_management
+    WHERE
+      id = #{id}
+  </select>
+</mapper>

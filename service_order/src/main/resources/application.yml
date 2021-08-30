@@ -1,0 +1,41 @@
+server:
+  port: 8011
+
+spring:
+  application:
+    name: order-service
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #Mysql5加上allowMultiQueries=true
+    url: jdbc:mysql://127.0.0.1:3306/hc_delivery_opc?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    platform: mysql
+    type: com.alibaba.druid.pool.DruidDataSource
+
+# 配置Ribbon负载均衡策略，也可以编写配置类，但是要在Scan扫描不到的地方配，且在启动类注明是哪个服务
+service-stock:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule
+
+# 启动懒加载，在启动的时候就加载策略
+ribbon:
+  eager-load:
+    enabled: true
+    clients: service-stock
+
+logging:
+  level:
+    com.skyman.order.feign: debug
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.skyman.order.domain
+  global-config:
+    db-config:
+      table-underline: true

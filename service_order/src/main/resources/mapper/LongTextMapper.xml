@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skyman.order.mapper.LongTextMapper">
+  <resultMap id="LongTextMap" type="com.skyman.order.domain.LongText">
+    <id column="id" property="id" jdbcType="TINYINT"/>
+    <result column="text" property="text" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <select id="selectList" resultMap="LongTextMap">
+    select * from longtexttable
+  </select>
+
+  <insert id="insertList" parameterType="com.skyman.order.domain.LongText">
+    insert into longtexttable (text)
+    values (#{text})
+  </insert>
+</mapper>

@@ -1,0 +1,28 @@
+server:
+  port: 9099
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true
+          route-id-prefix: skyman
+      routes:
+        - id: order-service                       # 唯一路由表示，没有实际作用不重复就好
+          uri: lb://order-service                 # 注册中心服务名称
+          filters:
+            - StripPrefix=0                       # 转发过滤前缀个数
+          predicates:
+            - Path=/56841687464/1313/**
+        - id: stock-service
+          uri: lb://stock-service
+          filters:
+            - StripPrefix=1
+          predicates:
+            - Path=/stock/**

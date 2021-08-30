@@ -1,0 +1,12 @@
+
+?
+java:S2629"$Invoke method(s) only conditionally.(Ò€ÄÐ8õÚ™ß¥/
+K
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8¢šŸ‰±/
+h
+java:S2259"HA "NullPointerException" could be thrown; "attributes" is nullable here.(¨åÝÇúÿÿÿÿ8öþ’ß¥/
+¡
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ê”ªàÿÿÿÿÿ8ëè‘ß¥/
+|
+java:S3457"aNo need to call "toString()" method as formatting and string conversion is done by the Formatter.(Ò€ÄÐ8õÚ™ß¥/
+V	java:S125"<This block of commented-out lines of code should be removed.(éøñ‰8¢šŸ‰±/
